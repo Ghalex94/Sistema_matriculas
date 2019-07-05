@@ -13,11 +13,13 @@ namespace SistemaMatricula.ModuloMatriculas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack) { 
             cargarAlumnos();
+            }
         }
 
         public void cargarAlumnos() {
-            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante", cnx);
@@ -52,24 +54,78 @@ namespace SistemaMatricula.ModuloMatriculas
             string fecha_nacimiento = dpFechaNac.SelectedDate.ToString();
             string estado_civil = radioEstadoCivil.SelectedValue;
 
-            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
-            string command = $@"INSERT INTO tbEstudiante(dni, nombre_estudiante, apellido_paterno, apellido_materno, fecha_nacimiento, estado_civil)
-                                 values('{dni}','{nombre_estudiante}','{apellido_paterno}','{apellido_materno}','{fecha_nacimiento}','{estado_civil}')";
-            SqlCommand cmd = new SqlCommand(command, cnx);
-            cmd.ExecuteNonQuery();
-            cargarAlumnos();
+            if (hdIdAlumno.Value != "")
+            {
+                string command = $@"UPDATE tbEstudiante SET nombre_estudiante='"+nombre_estudiante+"', apellido_paterno='"+apellido_paterno+"', apellido_materno='"+apellido_materno+ "', fecha_nacimiento='"+fecha_nacimiento+"', estado_civil='"+estado_civil+"' WHERE id=" + hdIdAlumno.Value;
+                SqlCommand cmd = new SqlCommand(command, cnx);
+                cmd.ExecuteNonQuery();
+                cnx.Close();
+                cargarAlumnos();
+                limpiar();
+            }
+            else
+            {
+                 string command = $@"INSERT INTO tbEstudiante(dni, nombre_estudiante, apellido_paterno, apellido_materno, fecha_nacimiento, estado_civil)
+                                     values('{dni}','{nombre_estudiante}','{apellido_paterno}','{apellido_materno}','{fecha_nacimiento}','{estado_civil}')";
+                SqlCommand cmd = new SqlCommand(command, cnx);
+                cmd.ExecuteNonQuery();
+                cnx.Close();
+                cargarAlumnos();
+                limpiar();
+            }
         }
 
-        protected void gvEstudiantes_SelectedIndexChanged(object sender, EventArgs e)
+        public void limpiar()
         {
-
+            hdIdAlumno.Value = null;
+            txtDni.Text = null;
+            txtNombre.Text = null;
+            txtApePaterno.Text = null;
+            txtApeMaterno.Text = null;
+            dpFechaNac.SelectedDates.Clear();
+            radioEstadoCivil.SelectedValue = null;
+            txtDni.Focus();
+        }
+        
+        protected void gvEstudiantes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            short idalumno = short.Parse(e.CommandArgument.ToString());
+            if (e.CommandName.ToString() == "editar")
+            {
+                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+                cnx.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante where id = " + idalumno, cnx);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    hdIdAlumno.Value = dr.GetInt32(0).ToString();
+                    txtDni.Text = dr.GetString(1);
+                    txtNombre.Text = dr.GetString(2);
+                    txtApePaterno.Text = dr.GetString(3);
+                    txtApeMaterno.Text = dr.GetString(4);
+                    dpFechaNac.SelectedDate = dr.GetDateTime(5);
+                    radioEstadoCivil.SelectedValue = dr.GetString(6);
+                }
+                cnx.Close();
+            }
+            if (e.CommandName.ToString() == "eliminar")
+            {
+                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+                cnx.Open();
+                string command = $@"DELETE FROM tbEstudiante WHERE id="+ idalumno;
+                SqlCommand cmd = new SqlCommand(command, cnx);
+                cmd.ExecuteNonQuery();
+                cnx.Close();
+                cargarAlumnos();
+            }
         }
 
-        protected void gvEstudiantes_SeectedIndexChanged(object sender, EventArgs e)
+        protected void lnkCancelar_Click(object sender, EventArgs e)
         {
-
+            limpiar();
         }
     }
 }

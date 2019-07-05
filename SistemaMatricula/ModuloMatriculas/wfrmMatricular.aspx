@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="wfrmCursos.aspx.cs" Inherits="SistemaMatricula.ModuloMatriculas.wfrmCursos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="wfrmMatricular.aspx.cs" Inherits="SistemaMatricula.ModuloMatriculas.wfrmMatricular" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/estudiante.css" rel="stylesheet" />
     <table>
@@ -11,12 +11,9 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label2" runat="server" Text="Ingrese CURSO;"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>
-                <asp:TextBox ID="txtNombreCurso" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNombreCurso" ErrorMessage="Nombre es obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
@@ -47,7 +44,7 @@
        
         </table>
     
-    <asp:GridView ID="gvCursos" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="gvMatriculas" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:BoundField DataField="nombre_curso" HeaderText="CURSO" />
             <asp:BoundField DataField="semestre" HeaderText="SEMESTRE"></asp:BoundField>

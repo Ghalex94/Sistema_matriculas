@@ -13,6 +13,15 @@ namespace SistemaMatricula.ModuloMatriculas {
     public partial class wfrmAlumnos {
         
         /// <summary>
+        /// Control hdIdAlumno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdAlumno;
+        
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -148,13 +157,13 @@ namespace SistemaMatricula.ModuloMatriculas {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
-        /// Control LinkButton1.
+        /// Control lnkCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancelar;
         
         /// <summary>
         /// Control ValidationSummary1.

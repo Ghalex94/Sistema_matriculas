@@ -9,14 +9,14 @@ using System.Web.UI.WebControls;
 
 namespace SistemaMatricula.ModuloMatriculas
 {
-    public partial class wfrmCursos : System.Web.UI.Page
+    public partial class wfrmMatricular : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCursos();
+            cargarMatriculas();
         }
 
-        public void cargarCursos()
+        public void cargarMatriculas()
         {
             SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
@@ -36,24 +36,23 @@ namespace SistemaMatricula.ModuloMatriculas
                 };
                 listaCursos.Add(curso);
             }
-            gvCursos.DataSource = listaCursos;
-            gvCursos.DataBind();
+            gvMatriculas.DataSource = listaCursos;
+            gvMatriculas.DataBind();
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            string nombre_curso = txtNombreCurso.Text;
             string semestre = txtSemestre.Text;
             string carrera = txtCarrera.Text;
 
             SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
-            string command = $@"INSERT INTO tbCurso(nombre_curso, semestre, carrera)
-                                 values('{nombre_curso}','{semestre}','{carrera}')";
+            string command = $@"INSERT INTO tbCurso(semestre, carrera)
+                                 values('{semestre}','{carrera}')";
             SqlCommand cmd = new SqlCommand(command, cnx);
             cmd.ExecuteNonQuery();
-            cargarCursos();
+            cargarMatriculas();
         }
     }
 }

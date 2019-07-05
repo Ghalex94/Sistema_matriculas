@@ -132,6 +132,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="ModuloMatriculas\wfrmMatricular.aspx" />
     <Content Include="ModuloMatriculas\wfrmCursos.aspx" />
     <Content Include="ModuloMatriculas\wfrmAlumnos.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -196,7 +197,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\Matricula.cs" />
     <Compile Include="Models\Estudiante.cs" />
+    <Compile Include="ModuloMatriculas\wfrmMatricular.aspx.cs">
+      <DependentUpon>wfrmMatricular.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModuloMatriculas\wfrmMatricular.aspx.designer.cs">
+      <DependentUpon>wfrmMatricular.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ModuloMatriculas\wfrmCursos.aspx.cs">
       <DependentUpon>wfrmCursos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

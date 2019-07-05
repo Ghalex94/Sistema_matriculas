@@ -10,34 +10,7 @@
 namespace SistemaMatricula.ModuloMatriculas {
     
     
-    public partial class wfrmCursos {
-        
-        /// <summary>
-        /// Control Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// Control txtNombreCurso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCurso;
-        
-        /// <summary>
-        /// Control RequiredFieldValidator2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+    public partial class wfrmMatricular {
         
         /// <summary>
         /// Control Label3.
@@ -94,12 +67,12 @@ namespace SistemaMatricula.ModuloMatriculas {
         protected global::System.Web.UI.WebControls.LinkButton lnkCancelar;
         
         /// <summary>
-        /// Control gvCursos.
+        /// Control gvMatriculas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCursos;
+        protected global::System.Web.UI.WebControls.GridView gvMatriculas;
     }
 }

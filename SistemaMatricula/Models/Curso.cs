@@ -9,7 +9,7 @@ namespace SistemaMatricula.Models
     {
         public int id { get; set; }
         public string nombre_curso { get; set; }
-        public int semestre { get; set; }
+        public short semestre { get; set; }
         public string carrera { get; set; }
 
     }
