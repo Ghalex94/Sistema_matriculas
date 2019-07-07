@@ -107,6 +107,8 @@ B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\bin\Microsoft.AspNet.Te
 B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\bin\es\System.Web.Optimization.resources.dll
 B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.csprojResolveAssemblyReference.cache
 B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.dll
 B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.pdb
+B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.csprojAssemblyReference.cache
+B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.csproj.CoreCompileInputs.cache
+B:\Desarrollo\C#\GIT\Sistema_matriculas\SistemaMatricula\obj\Debug\SistemaMatricula.csproj.CopyComplete

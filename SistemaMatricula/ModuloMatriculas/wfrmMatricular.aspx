@@ -4,39 +4,43 @@
     <table>
         <tr>
             <td style="height: 25px">
-                &nbsp;</td>
+                </td>
             <td style="height: 25px">
-                &nbsp;</td>
+                </td>
             <td style="height: 25px"></td>
         </tr>
         <tr>
-            <td>
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="height: 10px">
+                </td>
+            <td style="height: 10px">
+                </td>
+            <td style="height: 10px"></td>
         </tr>
         <tr>
             <td style="height: 20px">
-                <asp:Label ID="Label3" runat="server" Text="Ingrese SEMESTRE:"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="ALUMNO:"></asp:Label>
             </td>
             <td style="height: 20px">
-                <asp:TextBox ID="txtSemestre" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddlAlumno" runat="server">
+                </asp:DropDownList>
             </td>
             <td style="height: 20px"></td>
+
         </tr>
         <tr>
             <td style="height: 22px">
-                <asp:Label ID="Label4" runat="server" Text="Ingrese CARRERA:"></asp:Label>
+                <asp:Label ID="Label4" runat="server" Text="CURSO"></asp:Label>
             </td>
             <td style="height: 22px">
-                <asp:TextBox ID="txtCarrera" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="ddlCurso" runat="server">
+                </asp:DropDownList>
+                <asp:TextBox ID="txtPrueba" runat="server"></asp:TextBox>
             </td>
            
         <tr>
             <td>&nbsp;</td>
             <td>
-                <asp:Button ID="btnGuardar" runat="server" OnClick="btnGuardar_Click" Text="Guardar" />
+                <asp:Button ID="btnMatricular" runat="server" OnClick="btnMatricular_Click" Text="MATRICULAR" />
                 <asp:LinkButton ID="lnkCancelar" runat="server">Cancelar</asp:LinkButton>
             </td>
             <td>&nbsp;</td>

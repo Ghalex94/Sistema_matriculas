@@ -19,7 +19,7 @@ namespace SistemaMatricula.ModuloMatriculas
         }
 
         public void cargarAlumnos() {
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante", cnx);
@@ -54,7 +54,7 @@ namespace SistemaMatricula.ModuloMatriculas
             string fecha_nacimiento = dpFechaNac.SelectedDate.ToString();
             string estado_civil = radioEstadoCivil.SelectedValue;
 
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
             if (hdIdAlumno.Value != "")
@@ -95,7 +95,7 @@ namespace SistemaMatricula.ModuloMatriculas
             short idalumno = short.Parse(e.CommandArgument.ToString());
             if (e.CommandName.ToString() == "editar")
             {
-                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+                SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
                 cnx.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante where id = " + idalumno, cnx);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -113,7 +113,7 @@ namespace SistemaMatricula.ModuloMatriculas
             }
             if (e.CommandName.ToString() == "eliminar")
             {
-                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+                SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
                 cnx.Open();
                 string command = $@"DELETE FROM tbEstudiante WHERE id="+ idalumno;
                 SqlCommand cmd = new SqlCommand(command, cnx);

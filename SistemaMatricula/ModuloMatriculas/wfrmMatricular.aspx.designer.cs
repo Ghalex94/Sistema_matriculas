@@ -22,13 +22,13 @@ namespace SistemaMatricula.ModuloMatriculas {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control txtSemestre.
+        /// Control ddlAlumno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSemestre;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAlumno;
         
         /// <summary>
         /// Control Label4.
@@ -40,22 +40,31 @@ namespace SistemaMatricula.ModuloMatriculas {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control txtCarrera.
+        /// Control ddlCurso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCarrera;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCurso;
         
         /// <summary>
-        /// Control btnGuardar.
+        /// Control txtPrueba.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.TextBox txtPrueba;
+        
+        /// <summary>
+        /// Control btnMatricular.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMatricular;
         
         /// <summary>
         /// Control lnkCancelar.

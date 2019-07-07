@@ -18,7 +18,7 @@ namespace SistemaMatricula.ModuloMatriculas
 
         public void cargarCursos()
         {
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT * FROM tbCurso", cnx);
@@ -46,7 +46,7 @@ namespace SistemaMatricula.ModuloMatriculas
             string semestre = txtSemestre.Text;
             string carrera = txtCarrera.Text;
 
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
+            SqlConnection cnx = new SqlConnection("data source = RYZEN5; initial catalog = bdmatricula; user id = sa; password = Aa123456");
             cnx.Open();
 
             string command = $@"INSERT INTO tbCurso(nombre_curso, semestre, carrera)
