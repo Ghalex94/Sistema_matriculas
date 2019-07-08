@@ -98,7 +98,8 @@
         </tr>
     </table>
     
-    <asp:GridView ID="gvEstudiantes" runat="server" AutoGenerateColumns="False" OnRowCommand="gvEstudiantes_RowCommand">
+    <asp:GridView ID="gvEstudiantes" Width="100%" runat="server" AutoGenerateColumns="False" OnRowCommand="gvEstudiantes_RowCommand" CellPadding="4" GridLines="None" ForeColor="#333333">
+        <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="dni" HeaderText="DNI" />
             <asp:BoundField DataField="nombre_estudiante" HeaderText="NOMBRE"></asp:BoundField>
@@ -115,6 +116,16 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
 
 

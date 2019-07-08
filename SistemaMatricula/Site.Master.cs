@@ -11,7 +11,16 @@ namespace SistemaMatricula
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["login"] == null)
+            {
+                Response.Redirect("/Login.aspx");
+            }
+        }
 
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session["login"] = null;
+            Response.Redirect("/Login.aspx");
         }
     }
 }

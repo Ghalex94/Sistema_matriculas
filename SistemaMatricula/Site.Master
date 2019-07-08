@@ -54,6 +54,10 @@
                         <li><a runat="server" href="~/ModuloMatriculas/wfrmAlumnos.aspx">ALUMNOS</a></li>
                         <li><a runat="server" href="~/ModuloMatriculas/wfrmCursos.aspx">CURSOS</a></li>
                         <li><a runat="server" href="~/ModuloMatriculas/wfrmMatricular.aspx">MATRICULAR</a></li>
+                         <li>
+                             <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Cerrar Sesion</asp:LinkButton>
+                         </li>
+
                     </ul>
                 </div>
             </div>
