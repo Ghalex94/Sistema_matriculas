@@ -34,7 +34,6 @@
             <td style="height: 22px">
                 <asp:DropDownList ID="ddlCurso" runat="server">
                 </asp:DropDownList>
-                <asp:TextBox ID="txtPrueba" runat="server"></asp:TextBox>
             </td>
            
         <tr>
@@ -48,11 +47,16 @@
        
         </table>
     
-    <asp:GridView ID="gvMatriculas" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="gvMatriculas" runat="server" AutoGenerateColumns="False" OnRowCommand="gvMatriculas_RowCommand">
         <Columns>
-            <asp:BoundField DataField="nombre_curso" HeaderText="CURSO" />
-            <asp:BoundField DataField="semestre" HeaderText="SEMESTRE"></asp:BoundField>
-            <asp:BoundField DataField="carrera" HeaderText="CARRERA"></asp:BoundField>
+            <asp:BoundField DataField="nombre_estudiante" HeaderText="ESTUDIANTE" />
+            <asp:BoundField DataField="nombre_curso" HeaderText="CURSO"></asp:BoundField>
+            <asp:BoundField DataField="fecha_matricula" HeaderText="FECHA DE MATRICULA"></asp:BoundField>
+            <asp:TemplateField HeaderText="ELIMINAR">
+                <ItemTemplate>  
+                    <asp:LinkButton ID="lbEliminar" OnClientClick="return confirm('Desea eliminar esta Matricula?');"  runat="server" CommandName="eliminar" CommandArgument='<%# Eval("id")%>'>ELIMINAR</asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 

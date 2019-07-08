@@ -36,6 +36,7 @@
             </td>
             <td style="height: 20px">
                 <asp:TextBox ID="txtApePaterno" runat="server" ValidationGroup="form"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Apellido paterno es obligatorio" ForeColor="Red" ControlToValidate="txtApePaterno" ValidationGroup="form"></asp:RequiredFieldValidator>
             </td>
             <td style="height: 20px"></td>
         </tr>
@@ -45,6 +46,7 @@
             </td>
             <td>
                 <asp:TextBox ID="txtApeMaterno" runat="server" ValidationGroup="form"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Apellido materno es obligatorio" ForeColor="Red" ControlToValidate="txtApeMaterno" ValidationGroup="form"></asp:RequiredFieldValidator>
             </td>
             <td>&nbsp;</td>
         </tr>
