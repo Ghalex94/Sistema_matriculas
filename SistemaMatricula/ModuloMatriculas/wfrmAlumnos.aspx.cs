@@ -1,4 +1,8 @@
-﻿using SistemaMatricula.Models;
+﻿
+using CapaAccesoDatos;
+using CapaDominio;
+using CapaLogicaNegocios;
+using SistemaMatricula.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,34 +18,13 @@ namespace SistemaMatricula.ModuloMatriculas
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack) { 
-            cargarAlumnos();
+                cargarEstudiantes();
             }
         }
 
-        public void cargarAlumnos() {
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-            cnx.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante", cnx);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            List<Estudiante> ListaEstudiantes = new List<Estudiante>();
-            while (dr.Read())
-            {
-                var estudiante = new Estudiante()
-                {
-                    id = dr.GetInt32(0),
-                    dni = dr.GetString(1),
-                    nombre_estudiante = dr.GetString(2),
-                    apellido_paterno = dr.GetString(3),
-                    apellido_materno = dr.GetString(4),
-                    fecha_nacimiento = dr.GetDateTime(5),
-                    estado_civil = dr.GetString(6),
-                };
-                ListaEstudiantes.Add(estudiante);
-            }
-            cnx.Close();
-            gvEstudiantes.DataSource = ListaEstudiantes;
+        public void cargarEstudiantes() {
+            EstudianteBL bl = new EstudianteBL();
+            gvEstudiantes.DataSource = bl.GetEstudiantes();;
             gvEstudiantes.DataBind();
         }
 
@@ -51,36 +34,27 @@ namespace SistemaMatricula.ModuloMatriculas
             string nombre_estudiante = txtNombre.Text;
             string apellido_paterno = txtApePaterno.Text;
             string apellido_materno = txtApeMaterno.Text;
-            string fecha_nacimiento = dpFechaNac.SelectedDate.ToString();
+            DateTime fecha_nacimiento = dpFechaNac.SelectedDate;
             string estado_civil = radioEstadoCivil.SelectedValue;
-
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-            cnx.Open();
-
-            if (hdIdAlumno.Value != "")
+            Estudiante estudiante = new Estudiante()
             {
-                string command = $@"UPDATE tbEstudiante SET nombre_estudiante='"+nombre_estudiante+"', apellido_paterno='"+apellido_paterno+"', apellido_materno='"+apellido_materno+ "', fecha_nacimiento='"+fecha_nacimiento+"', estado_civil='"+estado_civil+"' WHERE id=" + hdIdAlumno.Value;
-                SqlCommand cmd = new SqlCommand(command, cnx);
-                cmd.ExecuteNonQuery();
-                cnx.Close();
-                cargarAlumnos();
-                limpiar();
-            }
-            else
-            {
-                 string command = $@"INSERT INTO tbEstudiante(dni, nombre_estudiante, apellido_paterno, apellido_materno, fecha_nacimiento, estado_civil)
-                                     values('{dni}','{nombre_estudiante}','{apellido_paterno}','{apellido_materno}','{fecha_nacimiento}','{estado_civil}')";
-                SqlCommand cmd = new SqlCommand(command, cnx);
-                cmd.ExecuteNonQuery();
-                cnx.Close();
-                cargarAlumnos();
-                limpiar();
-            }
+                id = Convert.ToInt32(hdIdAlumno.Value),
+                dni = dni,
+                nombre_estudiante = nombre_estudiante,
+                apellido_paterno = apellido_paterno,
+                apellido_materno = apellido_materno,
+                fecha_nacimiento = fecha_nacimiento,
+                estado_civil = estado_civil
+            };
+            EstudianteBL bl = new EstudianteBL();
+            bl.SaveEstudiante(estudiante);
+            cargarEstudiantes();
+            limpiar();
         }
 
         public void limpiar()
         {
-            hdIdAlumno.Value = null;
+            hdIdAlumno.Value = "0";
             txtDni.Text = null;
             txtNombre.Text = null;
             txtApePaterno.Text = null;
@@ -93,33 +67,25 @@ namespace SistemaMatricula.ModuloMatriculas
         protected void gvEstudiantes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             short idalumno = short.Parse(e.CommandArgument.ToString());
+            EstudianteBL bl = new EstudianteBL();
+            
             if (e.CommandName.ToString() == "editar")
             {
-                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-                cnx.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante where id = " + idalumno, cnx);
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    hdIdAlumno.Value = dr.GetInt32(0).ToString();
-                    txtDni.Text = dr.GetString(1);
-                    txtNombre.Text = dr.GetString(2);
-                    txtApePaterno.Text = dr.GetString(3);
-                    txtApeMaterno.Text = dr.GetString(4);
-                    dpFechaNac.SelectedDate = dr.GetDateTime(5);
-                    radioEstadoCivil.SelectedValue = dr.GetString(6);
-                }
-                cnx.Close();
+                Estudiante estudiante = bl.GetEstudiantesByID(idalumno);
+
+                hdIdAlumno.Value = estudiante.id.ToString();
+                txtDni.Text = estudiante.dni;
+                txtNombre.Text = estudiante.nombre_estudiante;
+                txtApePaterno.Text = estudiante.apellido_paterno;
+                txtApeMaterno.Text = estudiante.apellido_materno;
+                dpFechaNac.SelectedDate = estudiante.fecha_nacimiento;
+                radioEstadoCivil.SelectedValue = estudiante.estado_civil;
+               
             }
             if (e.CommandName.ToString() == "eliminar")
             {
-                SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-                cnx.Open();
-                string command = $@"DELETE FROM tbEstudiante WHERE id="+ idalumno;
-                SqlCommand cmd = new SqlCommand(command, cnx);
-                cmd.ExecuteNonQuery();
-                cnx.Close();
-                cargarAlumnos();
+                bl.DeleteEstudiante(idalumno);
+                cargarEstudiantes();
             }
         }
 

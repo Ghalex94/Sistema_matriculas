@@ -6,7 +6,7 @@
             <td style="height: 25px">
                 &nbsp;</td>
             <td style="height: 25px">
-                <asp:HiddenField ID="hdIdAlumno" runat="server" />
+                <asp:HiddenField ID="hdIdAlumno" Value="0" runat="server" />
             </td>
             <td style="height: 25px">&nbsp;</td>
         </tr>
