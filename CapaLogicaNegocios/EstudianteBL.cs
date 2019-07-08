@@ -17,7 +17,7 @@ namespace CapaLogicaNegocios
             cnx = new Conexion();
         }
 
-        public Estudiante GetEstudiantesByID(int idAlumno)
+        public Estudiante GetEstudianteByID(int idAlumno)
         {
             cnx.OpenConexion();
             SqlCommand cmd = new SqlCommand("SELECT * FROM tbEstudiante where id = " + idAlumno, this.cnx._CurrentConexion);
@@ -69,34 +69,33 @@ namespace CapaLogicaNegocios
 
         public void SaveEstudiante(Estudiante estudiante)
         {
-            cnx.OpenConexion();
-            if (estudiante.id != 0)
-            {
-                string command = $@"UPDATE tbEstudiante SET 
+                cnx.OpenConexion();
+                if (estudiante.id != 0)
+                {
+                    string command = $@"UPDATE tbEstudiante SET 
                                         nombre_estudiante='{estudiante.nombre_estudiante}',
                                         apellido_paterno='{estudiante.apellido_paterno}',
                                         apellido_materno='{estudiante.apellido_materno}', 
                                         fecha_nacimiento='{estudiante.fecha_nacimiento}',
                                         estado_civil='{estudiante.estado_civil}' 
                                     WHERE id=" + estudiante.id;
-                SqlCommand cmd = new SqlCommand(command, cnx._CurrentConexion);
-                cmd.ExecuteNonQuery();
-                cnx.CloseConexion();
-            }
-            else
-            {
-                string command = $@"INSERT INTO tbEstudiante(dni, nombre_estudiante, apellido_paterno, apellido_materno, fecha_nacimiento, estado_civil)
+                    SqlCommand cmd = new SqlCommand(command, cnx._CurrentConexion);
+                    cmd.ExecuteNonQuery();
+                    cnx.CloseConexion();
+                }
+                else
+                {
+                    string command = $@"INSERT INTO tbEstudiante(dni, nombre_estudiante, apellido_paterno, apellido_materno, fecha_nacimiento, estado_civil)
                                      values('{estudiante.dni}',
                                      '{estudiante.nombre_estudiante}',
                                      '{estudiante.apellido_paterno}',
                                      '{estudiante.apellido_materno}',
                                      '{estudiante.fecha_nacimiento}',
                                      '{estudiante.estado_civil}')";
-                SqlCommand cmd = new SqlCommand(command, cnx._CurrentConexion);
-                cmd.ExecuteNonQuery();
-                cnx.CloseConexion();
-            }
-
+                    SqlCommand cmd = new SqlCommand(command, cnx._CurrentConexion);
+                    cmd.ExecuteNonQuery();
+                    cnx.CloseConexion();
+                }
         }
 
         public void DeleteEstudiante(int idAlumno)

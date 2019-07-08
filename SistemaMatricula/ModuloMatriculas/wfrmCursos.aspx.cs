@@ -1,4 +1,5 @@
-﻿using SistemaMatricula.Models;
+﻿using CapaDominio;
+using CapaLogicaNegocios;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,30 +14,16 @@ namespace SistemaMatricula.ModuloMatriculas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarCursos();
+            if (!Page.IsPostBack)
+            {
+                cargarCursos();
+            }
         }
 
         public void cargarCursos()
         {
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-            cnx.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tbCurso", cnx);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            List<Curso> listaCursos = new List<Curso>();
-            while (dr.Read())
-            {
-                var curso = new Curso()
-                {
-                    id = dr.GetInt32(0),
-                    nombre_curso = dr.GetString(1),
-                    semestre = dr.GetInt16(2),
-                    carrera = dr.GetString(3)
-                };
-                listaCursos.Add(curso);
-            }
-            gvCursos.DataSource = listaCursos;
+            CursoBL bl = new CursoBL();
+            gvCursos.DataSource = bl.GetCursos();
             gvCursos.DataBind();
         }
 
@@ -45,15 +32,52 @@ namespace SistemaMatricula.ModuloMatriculas
             string nombre_curso = txtNombreCurso.Text;
             string semestre = txtSemestre.Text;
             string carrera = txtCarrera.Text;
-
-            SqlConnection cnx = new SqlConnection("data source = LENOVO_X230; initial catalog = bdmatricula; user id = sa; password = Aa123456");
-            cnx.Open();
-
-            string command = $@"INSERT INTO tbCurso(nombre_curso, semestre, carrera)
-                                 values('{nombre_curso}','{semestre}','{carrera}')";
-            SqlCommand cmd = new SqlCommand(command, cnx);
-            cmd.ExecuteNonQuery();
+            Curso curso = new Curso()
+            {
+                id = Convert.ToInt32(hdIdCurso.Value),
+                nombre_curso = nombre_curso,
+                semestre = Convert.ToInt16(semestre),
+                carrera = carrera
+            };
+            CursoBL bl = new CursoBL();
+            bl.SaveCurso(curso);
             cargarCursos();
+            limpiar();
+        }
+
+        protected void gvCursos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            short idCurso = short.Parse(e.CommandArgument.ToString());
+            CursoBL bl = new CursoBL();
+
+            if (e.CommandName.ToString() == "editar")
+            {
+                Curso curso = bl.GetCursoByID(idCurso);
+
+                hdIdCurso.Value = curso.id.ToString();
+                txtNombreCurso.Text = curso.nombre_curso;
+                txtSemestre.Text = curso.semestre.ToString();
+                txtCarrera.Text = curso.carrera;
+
+            }
+            if (e.CommandName.ToString() == "eliminar")
+            {
+                bl.DeleteCurso(idCurso);
+                cargarCursos();
+            }
+        }
+        public void limpiar()
+        {
+            hdIdCurso.Value = "0";
+            txtNombreCurso.Text = string.Empty;
+            txtSemestre.Text = string.Empty;
+            txtCarrera.Text = string.Empty;
+            txtNombreCurso.Focus();
+        }
+
+        protected void lnkCancelar_Click(object sender, EventArgs e)
+        {
+            limpiar();
         }
     }
 }

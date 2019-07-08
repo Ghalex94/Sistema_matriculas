@@ -196,8 +196,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Curso.cs" />
-    <Compile Include="Models\Matricula.cs" />
     <Compile Include="ModuloMatriculas\wfrmMatricular.aspx.cs">
       <DependentUpon>wfrmMatricular.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,10 +255,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaAccesoDatos\CapaAccesoDatos.csproj">
-      <Project>{E1A12232-6B03-446C-8362-80A31E72B46B}</Project>
-      <Name>CapaAccesoDatos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CapaDominio\CapaDominio.csproj">
       <Project>{CDE700FD-B82F-4588-B6D1-D1C7F3D792CF}</Project>
       <Name>CapaDominio</Name>

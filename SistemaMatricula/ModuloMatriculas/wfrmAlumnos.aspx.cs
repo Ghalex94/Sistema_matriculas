@@ -1,8 +1,6 @@
 ﻿
-using CapaAccesoDatos;
 using CapaDominio;
 using CapaLogicaNegocios;
-using SistemaMatricula.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -71,7 +69,7 @@ namespace SistemaMatricula.ModuloMatriculas
             
             if (e.CommandName.ToString() == "editar")
             {
-                Estudiante estudiante = bl.GetEstudiantesByID(idalumno);
+                Estudiante estudiante = bl.GetEstudianteByID(idalumno);
 
                 hdIdAlumno.Value = estudiante.id.ToString();
                 txtDni.Text = estudiante.dni;
